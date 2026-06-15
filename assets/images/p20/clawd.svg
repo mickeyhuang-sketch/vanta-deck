@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 100" shape-rendering="crispEdges">
+  <!-- Claude Code Clawd 機器人 pixel art -->
+  <!-- 顏色 -->
+  <defs>
+    <style>
+      .body { fill: #C77C5A; }
+      .eye { fill: #1A1A1A; }
+    </style>
+  </defs>
+
+  <!-- 頭頂兩個天線 -->
+  <rect class="body" x="10" y="10" width="10" height="10"/>
+  <rect class="body" x="110" y="10" width="10" height="10"/>
+
+  <!-- 主體 -->
+  <rect class="body" x="10" y="20" width="110" height="50"/>
+
+  <!-- 兩顆黑眼睛 -->
+  <rect class="eye" x="38" y="38" width="14" height="14"/>
+  <rect class="eye" x="78" y="38" width="14" height="14"/>
+
+  <!-- 四隻腳 -->
+  <rect class="body" x="22" y="70" width="10" height="20"/>
+  <rect class="body" x="42" y="70" width="10" height="20"/>
+  <rect class="body" x="78" y="70" width="10" height="20"/>
+  <rect class="body" x="98" y="70" width="10" height="20"/>
+</svg>

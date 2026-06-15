@@ -1,0 +1,579 @@
+/* ============================================
+   GoWarehouse Vanta Keynote — Animations
+   ============================================ */
+
+/* Page navigation transitions */
+.page.entering {
+  animation: pageEnter 0.8s ease forwards;
+}
+.page.leaving {
+  animation: pageLeave 0.8s ease forwards;
+}
+@keyframes pageEnter {
+  from { opacity: 0; transform: scale(1.02); }
+  to   { opacity: 1; transform: scale(1); }
+}
+@keyframes pageLeave {
+  from { opacity: 1; transform: scale(1); }
+  to   { opacity: 0; transform: scale(0.98); }
+}
+
+/* Highlight color shift (used in P3 「有意義」, P10 「新地基」, P13 「零」 etc.) */
+@keyframes highlight-shift {
+  0%   { color: var(--fg); }
+  100% { color: var(--accent); }
+}
+.page.active .hl-late {
+  animation: highlight-shift 0.6s ease 1.5s forwards;
+}
+
+/* Slide-up entry */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page.active .slide-up { animation: slide-up 0.8s ease forwards; }
+.page.active .slide-up.d1 { animation-delay: 0.2s; opacity: 0; }
+.page.active .slide-up.d2 { animation-delay: 0.6s; opacity: 0; }
+.page.active .slide-up.d3 { animation-delay: 1.0s; opacity: 0; }
+.page.active .slide-up.d4 { animation-delay: 1.4s; opacity: 0; }
+
+/* Char-by-char fade-in (P8 question) */
+.char-fade .ch {
+  opacity: 0;
+  display: inline-block;
+}
+.page.active .char-fade .ch {
+  animation: ch-fade 0.06s ease forwards;
+}
+
+@keyframes ch-fade {
+  to { opacity: 1; }
+}
+
+/* Cover logo fade */
+.cover-logo {
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 1.5s ease 0.3s, transform 1.5s ease 0.3s;
+}
+.page.active .cover-logo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Big reveal — P6 product reveal, after 2s black */
+.reveal {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 1.4s ease 1.8s, transform 1.4s ease 1.8s;
+}
+.page.active .reveal {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Arc line draw (P12) */
+.arc-line {
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.8s ease 0.2s;
+}
+.page.active .arc-line { transform: scaleX(1); }
+
+.lang-arc .lang {
+  opacity: 0;
+  transform: translateY(-50%) translateY(8px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+.page.active .lang-arc .lang { opacity: 1; transform: translateY(-50%) translateY(0); }
+.page.active .lang-arc .lang:nth-child(1) { transition-delay: 1.0s; }
+.page.active .lang-arc .lang:nth-child(2) { transition-delay: 1.2s; }
+.page.active .lang-arc .lang:nth-child(3) { transition-delay: 1.4s; }
+.page.active .lang-arc .lang:nth-child(4) { transition-delay: 1.6s; }
+.page.active .lang-arc .lang:nth-child(5) { transition-delay: 1.8s; }
+.page.active .lang-arc .lang:nth-child(6) { transition-delay: 2.0s; }
+.page.active .lang-arc .lang:nth-child(7) { transition-delay: 2.2s; }
+
+/* P31 — One More Thing two-phase */
+.one-more-phase-1, .one-more-phase-2 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  opacity: 0;
+}
+.page.active .one-more-phase-1 {
+  animation: phase1-show 5s ease forwards;
+}
+.page.active .one-more-phase-2 {
+  animation: phase2-show 5s ease 5s forwards;
+}
+@keyframes phase1-show {
+  0%   { opacity: 0; }
+  20%  { opacity: 1; }
+  80%  { opacity: 1; }
+  100% { opacity: 0; }
+}
+@keyframes phase2-show {
+  0%   { opacity: 0; transform: scale(0.96); }
+  30%  { opacity: 1; transform: scale(1); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* P31 X glow */
+.x-glow {
+  display: inline-block;
+  font-size: 1.5em;
+  vertical-align: middle;
+  margin: 0 0.15em;
+  text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+  animation: x-pulse 2s ease-in-out 5.8s forwards;
+}
+@keyframes x-pulse {
+  0%   { transform: scale(0.6); opacity: 0; text-shadow: 0 0 0 rgba(255,255,255,0); }
+  100% { transform: scale(1.5); opacity: 1; text-shadow: 0 0 40px rgba(255,255,255,0.8); }
+}
+
+/* P32 «你要去的地方» dim */
+.page.active .dim-late {
+  animation: dim-late 0.6s ease 2.5s forwards;
+}
+@keyframes dim-late {
+  to { color: var(--muted); opacity: 0.4; }
+}
+
+/* QR pulse */
+.qr-block .qr {
+  animation: qr-pulse 2s ease-in-out 2s infinite;
+}
+@keyframes qr-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(252, 204, 39, 0.4); }
+  50%      { box-shadow: 0 0 0 24px rgba(252, 204, 39, 0); }
+}
+
+/* Hr line draw */
+.line-draw {
+  width: 0;
+  height: 1px;
+  background: var(--fg);
+  margin: 24px auto;
+  transition: width 1s ease 0.6s;
+}
+.page.active .line-draw { width: 240px; }
+
+/* ============================================
+   SIZZLE REEL（P2–P6）— 自動播放開場動畫
+   ============================================ */
+
+/* Sizzle 共用：上升淡入，字級放大 */
+.sizzle-rise {
+  opacity: 0;
+  transform: translateY(60px);
+  filter: blur(4px);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1), filter 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.page.active .sizzle-rise {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.sizzle-fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1.4s cubic-bezier(0.16, 1, 0.3, 1), transform 1.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.page.active .sizzle-fade-up { opacity: 1; transform: translateY(0); }
+.page.active .sizzle-fade-up.sz-d0 { transition-delay: 0.2s; }
+.page.active .sizzle-fade-up.sz-d1 { transition-delay: 0.6s; }
+.page.active .sizzle-fade-up.sz-d2 { transition-delay: 1.4s; }
+.page.active .sizzle-fade-up.sz-d3 { transition-delay: 2.2s; }
+
+/* P3 「有意義」三字 — 由白變 accent + 光暈 */
+.hl-glow {
+  background: linear-gradient(120deg, #FCCC27 0%, #FFE066 50%, #FCCC27 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transition: opacity 1s ease 2s;
+  text-shadow: 0 0 30px rgba(252, 204, 39, 0.4);
+}
+.page.active .hl-glow { opacity: 1; }
+
+/* P5 背景氛圍占位（V-01 還沒生時用 gradient + scan line 營造） */
+.sizzle-bg-video {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+.sizzle-bg-fallback {
+  position: absolute;
+  inset: -10%;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(0, 142, 216, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(252, 204, 39, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(29, 164, 82, 0.08) 0%, transparent 60%),
+    linear-gradient(135deg, #0A0A0A 0%, #1A1A2A 100%);
+  filter: blur(20px);
+  animation: sizzle-drift 12s ease-in-out infinite alternate;
+}
+.sizzle-bg-video::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    rgba(255, 255, 255, 0.02) 3px,
+    rgba(255, 255, 255, 0.02) 4px
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+@keyframes sizzle-drift {
+  0%   { transform: scale(1.05) translate(0, 0); }
+  50%  { transform: scale(1.12) translate(-2%, 1%); }
+  100% { transform: scale(1.08) translate(1%, -2%); }
+}
+
+/* Sizzle wipe-right 升級版 */
+.sizzle .wipe-right {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.6s cubic-bezier(0.65, 0, 0.35, 1) 0.4s;
+}
+.page.active.sizzle .wipe-right { clip-path: inset(0 0 0 0); }
+
+/* ============================================
+   P6 揭曉 Cinematic 原型
+   時序：
+   0.0–2.0s  純黑場（觀眾屏息）
+   1.8–3.5s  粒子炸開 + halo 光暈擴散
+   2.5–4.5s  logo scale + rim light 從左掃到右
+   3.5–5.0s  「V A N T A」字距 4→16 拉開
+   5.0–6.5s  tagline 從中心拭開到兩側
+   7.0s+    CEO cue 浮現
+   ============================================ */
+
+.reveal-page {
+  background: #000;
+  overflow: hidden;
+}
+
+/* 純黑場層 */
+.reveal-blackout {
+  position: absolute;
+  inset: 0;
+  background: #000;
+  z-index: 10;
+  opacity: 1;
+}
+.page.active .reveal-blackout {
+  animation: reveal-blackout 1.2s ease forwards;
+}
+@keyframes reveal-blackout {
+  0%, 25%  { opacity: 1; }
+  100%     { opacity: 0; visibility: hidden; }
+}
+
+/* 中心光暈（halo） */
+.reveal-halo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 30%, transparent 70%);
+  transform: translate(-50%, -50%) scale(0);
+  z-index: 1;
+  opacity: 0;
+  filter: blur(20px);
+}
+.page.active .reveal-halo {
+  animation: halo-burst 4.5s ease 0.5s forwards;
+}
+@keyframes halo-burst {
+  0%   { transform: translate(-50%, -50%) scale(0); opacity: 0; }
+  20%  { transform: translate(-50%, -50%) scale(2.5); opacity: 0.9; }
+  100% { transform: translate(-50%, -50%) scale(6); opacity: 0; }
+}
+
+/* 粒子層 */
+.particles-burst {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 2;
+}
+.particles-burst .particle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 3px;
+  background: #FFF;
+  border-radius: 50%;
+  opacity: 0;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.9);
+}
+.page.active .particles-burst .particle {
+  animation: particle-fly 3.5s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+@keyframes particle-fly {
+  0%   { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  10%  { opacity: 1; }
+  100% { opacity: 0; transform: var(--p-end, translate(0, 0)) scale(0.2); }
+}
+
+/* Logo + 內容容器 */
+.reveal-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 0;
+}
+
+.reveal-logo-wrap {
+  position: relative;
+  opacity: 0;
+  transform: scale(0.85);
+}
+.page.active .reveal-logo-wrap {
+  animation: logo-arrive 3.2s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+}
+@keyframes logo-arrive {
+  0%   { opacity: 0; transform: scale(0.85); filter: blur(8px) brightness(0.4); }
+  60%  { filter: blur(0) brightness(1.4) drop-shadow(0 0 80px rgba(255, 255, 255, 0.5)); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0) brightness(1) drop-shadow(0 0 24px rgba(255, 255, 255, 0.12)); }
+}
+
+.reveal-logo {
+  width: 820px;
+  position: relative;
+  overflow: hidden;
+}
+.reveal-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Rim light sweep 金屬光從左到右掃過 logo */
+.rim-light-sweep {
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.0) 30%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0.0) 70%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0;
+}
+.page.active .rim-light-sweep {
+  animation: rim-sweep 2.8s cubic-bezier(0.5, 0, 0.5, 1) 2.6s forwards;
+}
+@keyframes rim-sweep {
+  0%   { left: -40%; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { left: 130%; opacity: 0; }
+}
+
+/* V A N T A 字距拉開 */
+.reveal-vanta {
+  font-size: 28px;
+  font-weight: 200;
+  color: rgba(255, 255, 255, 0);
+  margin-top: 56px;
+  letter-spacing: 4px;
+}
+.page.active .reveal-vanta {
+  animation: vanta-spread 3s cubic-bezier(0.16, 1, 0.3, 1) 2.8s forwards;
+}
+@keyframes vanta-spread {
+  0%   { letter-spacing: 4px; color: rgba(255, 255, 255, 0); }
+  100% { letter-spacing: 18px; color: rgba(255, 255, 255, 0.75); }
+}
+
+/* Tagline 從中心向兩側拭開 */
+.reveal-tagline {
+  font-size: 22px;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.55);
+  margin-top: 120px;
+  letter-spacing: 6px;
+  overflow: hidden;
+}
+.reveal-tagline .tagline-inner {
+  display: inline-block;
+  clip-path: inset(0 50% 0 50%);
+}
+.page.active .reveal-tagline .tagline-inner {
+  animation: tagline-wipe 1.8s cubic-bezier(0.65, 0, 0.35, 1) 5s forwards;
+}
+@keyframes tagline-wipe {
+  0%   { clip-path: inset(0 50% 0 50%); }
+  100% { clip-path: inset(0 0 0 0); }
+}
+
+/* Vignette + Scan line 質感 */
+.reveal-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 4;
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.6) 100%),
+    repeating-linear-gradient(0deg, transparent 0px, transparent 2px, rgba(255, 255, 255, 0.012) 2px, rgba(255, 255, 255, 0.012) 3px);
+  opacity: 0;
+}
+.page.active .reveal-vignette {
+  animation: vignette-in 1s ease 2.4s forwards;
+}
+@keyframes vignette-in {
+  to { opacity: 1; }
+}
+
+/* CEO cue 進入後才顯示（等 P6 動畫播完約 7 秒後浮現） */
+#ceo-cue {
+  opacity: 0;
+}
+.page.active #ceo-cue {
+  animation: ceo-cue-in 1.5s ease 7.5s forwards;
+}
+@keyframes ceo-cue-in {
+  to { opacity: 1; }
+}
+
+/* ============================================
+   P34 主 Demo 影片頁
+   ============================================ */
+
+.demo-page {
+  background: #000;
+  overflow: hidden;
+}
+
+.demo-frame {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.demo-frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(1.04);
+}
+.page.active .demo-frame video {
+  animation: demo-fade-in 1.6s cubic-bezier(0.16, 1, 0.3, 1) 0.4s forwards;
+}
+@keyframes demo-fade-in {
+  0%   { opacity: 0; transform: scale(1.04); filter: blur(8px); }
+  100% { opacity: 1; transform: scale(1); filter: blur(0); }
+}
+
+/* Focus box 鏡頭聚焦框（在影片某時間點放大特定區塊） */
+.demo-focus-box {
+  position: absolute;
+  border: 2px solid rgba(252, 204, 39, 0.7);
+  box-shadow:
+    0 0 0 9999px rgba(0, 0, 0, 0.55),
+    0 0 24px rgba(252, 204, 39, 0.4);
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.demo-focus-box.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 影片字幕（重點時刻逐字打字浮現） */
+.demo-caption {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 16px 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  max-width: 900px;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}
+.demo-caption.visible {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+.demo-caption .caption-line {
+  font-size: 24px;
+  font-weight: 400;
+  color: #FFF;
+  letter-spacing: 1px;
+  line-height: 1.5;
+}
+.demo-caption .caption-line::after {
+  content: "▍";
+  margin-left: 4px;
+  color: var(--accent-yellow);
+  animation: caret-blink 1s steps(2) infinite;
+}
+@keyframes caret-blink {
+  50% { opacity: 0; }
+}
+
+.demo-label {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.25);
+  letter-spacing: 3px;
+  z-index: 5;
+}
+
+/* Mark badge highlight (P38 「最多客戶選擇」) */
+.recommend-tag {
+  opacity: 0;
+  transition: opacity 0.6s ease 1.5s;
+}
+.page.active .recommend-tag {
+  opacity: 1;
+  animation: tag-pulse 1.5s ease 2.5s 2;
+}
+@keyframes tag-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.06); }
+}
